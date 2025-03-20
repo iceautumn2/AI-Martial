@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國術AI．武俠世界</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; background-color: #f9f9f9; }
+        h1 { color: #333; }
+        .category { margin-bottom: 20px; }
+        .button-container { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; justify-content: center; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; background-color: #add8e6; }
+        .我的英雄夢 button { background-color: #ff69b4; }
+        .健康養生 button { background-color: #90ee90; }
+        .selected { border: 2px solid #000; }
+        .copy-button, .link-button { margin-top: 20px; padding: 10px 20px; font-size: 16px; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .copy-button { background-color: #28a745; }
+        .link-button { background-color: #17a2b8; text-decoration: none; display: inline-block; }
+        strong { font-size: 20px; }
+        .custom-text { margin-top: 20px; width: 80%; height: 100px; }
+    </style>
+</head>
+<body>
+    <h1>國術AI．武俠世界</h1>
+    <label for="name">姓名：</label>
+    <input type="text" id="name" placeholder="輸入姓名">
+    
+    <label for="gender">性別：</label>
+    <select id="gender">
+        <option value="">請選擇</option>
+        <option value="男">男</option>
+        <option value="女">女</option>
+        <option value="其他">其他</option>
+    </select>
+    
+    <label for="age">年齡：</label>
+    <select id="age">
+        <option value="">請選擇</option>
+        <option value="6歲以下">6歲以下</option>
+        <option value="7歲到12歲">7歲到12歲</option>
+        <option value="13到17歲">13到17歲</option>
+        <option value="18歲-39歲">18歲-39歲</option>
+        <option value="40歲以上">40歲以上</option>
+    </select>
+    
+    <div id="categories"></div>
+    
+    <textarea id="customText" class="custom-text" placeholder="自由發揮..."></textarea>
+    
+    <button class="copy-button" onclick="copySelected()">複製</button>
+    <a href="https://padlet.com/icyautumn/padlet-o1nrhgartrabpwkh" target="_blank" class="link-button">前往 Padlet</a>
+    
+    <script>
+       const categories = {
+            "永續-想像國術最美好的未來": 
+            ["俠行天下", "義薄雲天", "見義勇為", "行俠仗義","俠義仁風", "俠士仁心", "仁者無敵",
+            "浩然正氣", "氣宇軒昂", "氣宇不凡","慷慨凜然", "豪氣萬千", "淡泊明志", "志向凌雲",
+            "志在四方", "意志剛強", "胸懷天下","萬人練功", "結交四方", "四海一家","繁花似錦", "智勇雙全", "文武雙全",
+            "道藝兼修", "內外兼修", "德才兼備","文韜武略", "剛柔並濟", "動靜皆宜","沉穩紮實", "厚積薄發", "行雲流水",
+            "心靈覺醒", "明心見性", "自強不息","格物致知", "勇敢擔當", "奮勇向上","積極向上", "強健體魄", "敏捷靈活",
+            "武耀中華", "簡璞生活", "寧靜致遠","道藝登峰", "拳藝載道", "知行合一","天人合一", "習武習德", "厚德載道",
+            "積善成德", "品德高尚", "敬天愛人","中華心學", "內聖外王", "教育札根","德慧傳家", "強無限可能"
+            ],
+
+            "我的英雄夢":
+            ["國術俠道", "國術俠潮", "國術俠思", "國術俠智","國術俠慧", "國術俠心", "國術俠義","國術俠傑", "國術俠藝",
+             "國術俠影", "國術俠風", "國術忠俠", "國術仁俠","國術義俠", "國術智俠", "國術德俠","國術武俠", "國術行俠",
+            "國術遊俠", "國術奇俠", "國術群俠", "國術新俠","國術大俠", "國術少俠", "國術小俠","國術幼俠", "國術武道",
+            "國術武學", "國術武智", "國術武行", "國術武藝","國術武魂", "國術武林", "國術武境","國術武禪", "國術禪武",
+            "國術群武", "國術心武", "國術傳武", "國術武功","國術道藝", "國術拳道", "國術極境","國術神遊", "國術奧義",
+            "國術心學", "國術美學", "國術無限", "國術興邦","國術宗師", "國術教練", "國術精英","國術英雄", "國術傳承",
+            ],
+
+        };
+        
+        const selectedWords = {};
+        const categoriesContainer = document.getElementById("categories");
+        
+        Object.entries(categories).forEach(([category, words]) => {
+            const categoryDiv = document.createElement("div");
+            categoryDiv.classList.add("category");
+            categoryDiv.innerHTML = `<strong>${category}</strong>`;
+            
+            const buttonContainer = document.createElement("div");
+            buttonContainer.classList.add("button-container");
+            
+            words.forEach(word => {
+                const btn = document.createElement("button");
+                btn.textContent = word;
+                btn.classList.add(category);
+                btn.onclick = function() {
+                    if (selectedWords[category] === word) {
+                        selectedWords[category] = null;
+                        btn.classList.remove("selected");
+                    } else {
+                        if (selectedWords[category]) {
+                            document.querySelector(`button[data-category='${category}'].selected`)?.classList.remove("selected");
+                        }
+                        selectedWords[category] = word;
+                        btn.classList.add("selected");
+                    }
+                };
+                btn.setAttribute("data-category", category);
+                buttonContainer.appendChild(btn);
+            });
+            
+            categoryDiv.appendChild(buttonContainer);
+            categoriesContainer.appendChild(categoryDiv);
+        });
+        
+        function copySelected() {
+            const name = document.getElementById("name").value;
+            const gender = document.getElementById("gender").value;
+            const age = document.getElementById("age").value;
+            const customText = document.getElementById("customText").value;
+            const text = `姓名: ${name}\n性別: ${gender}\n年齡: ${age}\n選擇: ` + Object.values(selectedWords).filter(Boolean).join(" ") + `\n自由發揮: ${customText}`;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("已複製:\n" + text);
+            }).catch(err => {
+                console.error("複製失敗", err);
+            });
+        }
+    </script>
+</body>
+</html>
