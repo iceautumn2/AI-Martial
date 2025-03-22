@@ -63,7 +63,7 @@
         <option value="6歲以下">6歲以下</option>
         <option value="7歲到12歲">7歲到12歲</option>
         <option value="13到17歲">13到17歲</option>
-        <option value="18歲-39歲">18歲以上</option>
+        <option value="18歲以上">18歲以上</option>
     
     </select>
     
@@ -72,7 +72,11 @@
     <textarea id="customText" class="custom-text" placeholder="自由發揮..."></textarea>
     <br>
     <button class="copy-button" onclick="copySelected()">複製選擇文字</button>
-    <a href="https://padlet.com/yichiuchu/padlet-ozf4m9ztvloxhpyz" target="_blank" class="link-button">前往 AI作品牆</a>
+    <br>
+    <h3>3個不同的AI創作世界，請選擇一個</h3>
+    <a href="https://padlet.com/yichiuchu/padlet-ozf4m9ztvloxhpyz" target="_blank" class="link-button">AI作品牆(A區)</a>
+    <a href="https://padlet.com/yichiuchu/113-b-ukkx08lry0i8xe69" target="_blank" class="link-button">AI作品牆(B區)</a>
+    <a href="https://padlet.com/yichiuchu/113-c-71oecxpkanw6swr0" target="_blank" class="link-button">AI作品牆(C區)</a>
     
     <script>
        const categories = {
@@ -137,7 +141,7 @@
             const gender = document.getElementById("gender").value;
             const age = document.getElementById("age").value;
             const customText = document.getElementById("customText").value;
-            const text = `姓名: ${name}\n性別: ${gender}\n年齡: ${age}\n選擇: ` + Object.values(selectedWords).filter(Boolean).join(" ") + `\n自由發揮: ${customText}`;
+            const text = `姓名: ${name}\n  性別: ${gender}\n  年齡: ${age}\n  國術狂響武俠夢: ` + Object.values(selectedWords).filter(Boolean).join(" ") + `\n自由發揮: ${customText}`;
             navigator.clipboard.writeText(text).then(() => {
                 alert("已複製:\n" + text);
             }).catch(err => {
