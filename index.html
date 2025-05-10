@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>花壇國小園遊會．武俠夢AI創作(資料輸入)</title>
+    <title>AI國術．創作國術狂響武俠視像圖</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 20px; background-color: #f9f9f9; }
         h1 { color: #333; }
@@ -14,6 +14,7 @@
         .button-container { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; justify-content: center; }
         button { padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; background-color: #bbe6f6; }
         
+        .category 永續-想像國術最美好的未來 button { background-color: #f8c1e7 !important; }
         .category 我的英雄夢 button { background-color: #93dbfc !important ; }
         .selected { 
             border: 1px solid #000; 
@@ -44,7 +45,7 @@
     </style>
 </head>
 <body>
-    <h1>花壇國小園遊會．武俠夢AI創作(資料輸入)</h1>
+    <h1>AI國術．創作國術狂響武俠視像圖</h1>
     <label for="name" >姓名：</label>
     <input type="text" id="name" placeholder="輸入姓名">
     
@@ -70,16 +71,26 @@
     
     <textarea id="customText" class="custom-text" placeholder="自由發揮..."></textarea>
     <br>
-    <button class="copy-button" onclick="copySelected()">複製文字</button>
+    <button class="copy-button" onclick="copySelected()">複製選擇文字</button>
     <br>
-    <h3>3個AI創作世界，請選擇一個</h3>
-    <a href="https://padlet.com/teac181/ai-a-xtese1djublismzp" target="_blank" class="link-button">AI作品牆(A區)</a>
-    <a href="https://padlet.com/teac181/ai-b-1tdj3rkokb49e131" target="_blank" class="link-button">AI作品牆(B區)</a>
-    <a href="https://padlet.com/teac181/ai-c-v58n07ximlk5g3ln" target="_blank" class="link-button">AI作品牆(C區)</a>
+    <h3>3個不同的AI創作世界，請選擇一個</h3>
+    <a href="https://padlet.com/yichiuchu/padlet-ozf4m9ztvloxhpyz" target="_blank" class="link-button">AI作品牆(A區)</a>
+    <a href="https://padlet.com/yichiuchu/113-b-ukkx08lry0i8xe69" target="_blank" class="link-button">AI作品牆(B區)</a>
+    <a href="https://padlet.com/yichiuchu/113-c-71oecxpkanw6swr0" target="_blank" class="link-button">AI作品牆(C區)</a>
     
     <script>
        const categories = {
-             "我的英雄夢":
+            "永續-想像國術最美好的未來": 
+            ["俠行天下", "義薄雲天", "見義勇為", "行俠仗義","俠義仁風", "俠士仁心", "仁者無敵",
+            "浩然正氣", "氣宇軒昂", "氣宇不凡","慷慨凜然", "豪氣萬千", "淡泊明志", "志向凌雲",
+            "志在四方", "意志剛強", "胸懷天下","萬人練功", "結交四方", "四海一家","繁花似錦", "智勇雙全", "文武雙全",
+            "道藝兼修", "內外兼修", "德才兼備","文韜武略", "剛柔並濟", "動靜皆宜","沉穩紮實", "厚積薄發", "行雲流水",
+            "心靈覺醒", "明心見性", "自強不息","格物致知", "勇敢擔當", "奮勇向上","積極向上", "強健體魄", "敏捷靈活",
+            "武耀中華", "簡璞生活", "寧靜致遠","道藝登峰", "拳藝載道", "知行合一","天人合一", "習武習德", "厚德載道",
+            "積善成德", "品德高尚", "敬天愛人","中華心學", "內聖外王", "教育札根","德慧傳家", "無限可能"
+            ],
+
+            "我的英雄夢":
             ["國術俠道", "國術俠潮", "國術俠思", "國術俠智","國術俠慧", "國術俠心", "國術俠義","國術俠傑", "國術俠藝",
              "國術俠影", "國術俠風", "國術忠俠", "國術仁俠","國術義俠", "國術智俠", "國術德俠","國術武俠", "國術行俠",
             "國術遊俠", "國術奇俠", "國術群俠", "國術新俠","國術大俠", "國術少俠", "國術小俠","國術幼俠", "國術武道",
